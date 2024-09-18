@@ -1,0 +1,94 @@
+﻿@layout EmptyLayout
+@page "/login"
+@using System.ComponentModel.DataAnnotations
+@using BlazorCloudStorage.Components.Layout
+@using BlazorCloudStorage.Context
+@using BlazorCloudStorage.Custom
+@using BlazorCloudStorage.Model
+@using Microsoft.AspNetCore.Identity
+
+@inject CloudDbContext _context;
+@inject SignInManager<User> manager;
+@inject UserManager<User> userManager;
+@inject RoleManager<IdentityRole> roleManager;
+@inject IdentityRedirectManager navManager;
+
+<PageTitle>Login</PageTitle>
+
+<div class="container login-container">
+    <h3>Login</h3>
+    <EditForm OnValidSubmit="LoginSubmit" Model="Input" method="post" FormName="login">
+        <InputText type="text" placeholder="Login" @bind-Value="Input.Login"/>
+        <InputText type="password" placeholder="Password" required @bind-Value="Input.Password"/>
+
+        <span class="error-message">@Error</span>
+        <span class="info-message">@Info</span>
+        <button type="submit">Sign In</button>
+    </EditForm>
+
+
+</div>
+
+@code {
+
+    [SupplyParameterFromQuery] private string? ReturnUrl { get; set; }
+
+    [SupplyParameterFromQuery] private string? Error { get; set; }
+
+    [SupplyParameterFromQuery] private string? Info { get; set; }
+
+    [SupplyParameterFromForm] private InputModel Input { get; set; } = new();
+
+    private async Task LoginSubmit()
+    {
+        var salt = Tools.Salt(Input.Password);
+        var user = _context.Users.ToList().FirstOrDefault(user => user.Login == Input.Login);
+
+        if (!_context.Users.Any() && Input.Login == "root")
+        {
+            await userManager.CreateAsync(new User { UserName = "root", Login = "root", SaltPassword = salt });
+
+            user = _context.Users.First();
+
+            if (!await roleManager.RoleExistsAsync("Admin"))
+            {
+                await roleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+
+            if (!(await userManager.GetRolesAsync(user)).Contains("Admin"))
+            {
+                await userManager.AddToRoleAsync(user, "Admin");
+            }
+        }
+
+        if (user != null)
+        {
+            if (string.IsNullOrEmpty(user.SaltPassword))
+            {
+                user.SaltPassword = salt;
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+                Info = "Password is set!";
+                return;
+            }
+
+            if (user.SaltPassword == salt)
+            {
+                await manager.SignInAsync(user, true);
+                navManager.RedirectTo(ReturnUrl);
+            }
+        }
+
+        Error = "USER NOT FOUND OR PASSWORD NOT CORRECT";
+    }
+
+    private sealed class InputModel
+    {
+        [Required] public string Login { get; set; } = "";
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; } = "";
+    }
+
+}

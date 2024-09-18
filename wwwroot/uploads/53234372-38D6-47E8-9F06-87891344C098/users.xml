@@ -1,0 +1,166 @@
+<?xml version="1.0" standalone="yes"?>
+
+<DocumentElement>
+	<users>
+		<UserCode xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			BmUfnwjjcibgA2d3V8iP1A==
+		</UserCode>
+		<UserName xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			DG6sl3XwP6VoSXfqFyPzlzLC3LqWRkcz88qWRmrfR+1Ox0t4Ve9Th/jTu4InHpPpBHFcNMFWIUjmi2w46Oy9uQ==
+		</UserName>
+		<Login xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			B2GjZaoa5WedtmOWJbGPWw==
+		</Login>
+		<Passwd xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			mGZbha2BZRMBq6otAbc2BQ==
+		</Passwd>
+	</users>
+	<users>
+		<UserCode xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			nopoaayvg6kqH/vue+D85w==
+		</UserCode>
+		<UserName xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			zpVwsmhYXIifbGu8vAeS9hfVuBIp3YKunElaFAGUUv8YnC554bLNuBnqjIjol9iJw0mqeZfs1XbjcEC13bFSxQ==
+		</UserName>
+		<Login xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			pAnGGB3TZ3SNjlI1p7NQSQ==
+		</Login>
+		<Passwd xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			1BKkuc4t+jtaLMzQgSdn1A==
+		</Passwd>
+	</users>
+	<users>
+		<UserCode xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			G+4f5Ypd9YpltBOerBQiUQ==
+		</UserCode>
+		<UserName xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			i/gm0k0QT8IJbgshOkx6ljKfG9BIftGcH9j513MWmlcax7gLO0b+IHoW+SDZ3+mnrHr2/jvUlKtByjYuM1k75Q==
+		</UserName>
+		<Login xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			hOux7IDXGurKSRCy7oKPFQ==
+		</Login>
+		<Passwd xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			eyb+Z/LrVes0YEV63Cvfig==
+		</Passwd>
+	</users>
+	<users>
+		<UserCode xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			FlDFv4V6OHBcmqeCDELudw==
+		</UserCode>
+		<UserName xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			CLpkB/M25Xa5ODf0P4xaB0wywRh95Fwn02gJMVJhmdi6BabftKzITg5cNXtFeZGDrGASFGpBaWKpR/NPE41ojQ==
+		</UserName>
+		<Login xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			U/svy0FbxBthe4tPTIQUsg==
+		</Login>
+		<Passwd xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			Qe4qkDkEX1zWOi5IipWBLQ==
+		</Passwd>
+	</users>
+	<users>
+		<UserCode xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			JRLGkNRbpoEUh8Nj5zueEg==
+		</UserCode>
+		<UserName xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			4JEg+2exZdBFIsp45w41lZZi4B2YrAds8Cv82YgEtJzrHa2uD5UTtEbO+p5QJctzeb3CrtinUrFAX/RQ03y07Q==
+		</UserName>
+		<Login xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			k8+YYOm4bEjHP1mXtD9qFw==
+		</Login>
+		<Passwd xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			e2bpoqEC1lVdt3Uclz+RHg==
+		</Passwd>
+	</users>
+	<users>
+		<UserCode xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			p4b3596rayDdpowygOfoYw==
+		</UserCode>
+		<UserName xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			6fwSHcd/fpckz7MkokOmI1JUzvXNtRjnMPXWVGKuS0JYTV8o1tlJ+PatWdP7DHdq
+		</UserName>
+		<Login xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			By4l3QBM9slPLhfq2NGESw==
+		</Login>
+		<Passwd xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			b9FaKKOYpELFSJJL7ThKpw==
+		</Passwd>
+	</users>
+	<users>
+		<UserCode xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			if9SQenl2z7Ht+zTHVAbbQ==
+		</UserCode>
+		<UserName xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			kKE6XYHkjl9UMHjlrGDQ4uC0fA8mjjrSi238iYEArhnfHf4KNWJGD4ai071oXg1HCfHT7fve51fmQbcOfFmJCQ==
+		</UserName>
+		<Login xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			ZSfUNijYVVRVI82NGxBsLA==
+		</Login>
+		<Passwd xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			kxvMWKz+ysA3A070FQJd9w==
+		</Passwd>
+	</users>
+	<users>
+		<UserCode xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			MHbrTeBGa5kohJywWBb5vg==
+		</UserCode>
+		<UserName xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			4lZ3CN+cl32DUZmWXT5IXkzPGOylKOXkFBGf7Wq6WcI=
+		</UserName>
+		<Login xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			bgwlTKMDAoi+orMb2kGNHw==
+		</Login>
+		<Passwd xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			lYMxPLwcVxK4a43Usbcm2A==
+		</Passwd>
+	</users>
+	<users>
+		<UserCode xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			xJ8P2GQlGxuZPTklxizzqg==
+		</UserCode>
+		<UserName xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			HiW0Ta0alJJWl6Cf0LX1mhNcJD7SR8TxamT5OQ7Cfug=
+		</UserName>
+		<Login xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			O0rhYntVGtEIEgvzZCqY3A==
+		</Login>
+		<Passwd xsi:type="xs:base64Binary" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			mGZbha2BZRMBq6otAbc2BQ==
+		</Passwd>
+	</users>
+</DocumentElement>

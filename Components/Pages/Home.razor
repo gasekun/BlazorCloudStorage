@@ -1,0 +1,48 @@
+﻿@page "/"
+@using BlazorCloudStorage.Context
+@using Microsoft.AspNetCore.Authorization
+
+@inject CloudDbContext db;
+@inject AuthenticationStateProvider provider
+@attribute [Authorize]
+
+<PageTitle>Home</PageTitle>
+
+
+<div class="container home-container">
+    <AuthorizeView>
+        <h2>Welcome, @context.User.Identity.Name!</h2>
+    </AuthorizeView>
+    <p>@filesCount files uploads!</p>
+    <p>All file size @Tools.ToReadableSize(filesSize)!</p>
+
+    <NavLink href="/storage">
+        <button>
+            Manage
+            Files
+        </button>
+    </NavLink>
+    <AuthorizeView Roles="Admin">
+        <NavLink href="/users">
+            <button>Users</button>
+        </NavLink>
+    </AuthorizeView>
+    <NavLink href="/logout">
+        <button>Logout</button>
+    </NavLink>
+</div>
+
+
+@code {
+    private int filesCount;
+    private long filesSize;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var userId = await Tools.GetUserId(provider);
+        var list = db.Files.Where(item => item.Owner == userId).ToList();
+        filesCount = list.Count(item => item.Owner == userId);
+        filesSize = list.Sum(item => item.Size);
+    }
+
+}

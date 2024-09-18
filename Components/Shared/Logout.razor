@@ -1,0 +1,16 @@
+﻿@page "/logout"
+@using BlazorCloudStorage.Model
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> manager
+@inject NavigationManager nav
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await manager.SignOutAsync();
+        nav.NavigateTo("/", true);
+    }
+
+}

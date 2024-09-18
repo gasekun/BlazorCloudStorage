@@ -1,0 +1,199 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.manage-container {
+    width: 600px;
+    position: relative;
+}
+
+    .manage-container input {
+        width: 96%;
+    }
+
+    .manage-container h2 {
+        margin-bottom: 20px;
+    }
+
+input[type="file"] {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 96%;
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    button:hover {
+        background-color: #555;
+    }
+
+.files-list {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left;
+    max-height: 405px;
+    overflow-y: auto;
+}
+
+    .files-list div:last-child {
+        border-bottom: none;
+    }
+
+.file-item {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ccc;
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    grid-template-columns: 2fr 150px 1fr;
+    justify-items: stretch;
+}
+
+    .file-item span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+.btn-delete {
+    background-color: rgb(189, 17, 17) !important;
+}
+
+    .btn-delete:hover {
+        background-color: rgb(200, 17, 17) !important;
+    }
+
+.file-item-action {
+    display: flex;
+    gap: 5px;
+    justify-content: end;
+}
+
+.file-item-body {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    text-align:center;
+}
+
+    .file-item-body span {
+        color: #888;
+    }
+
+input::file-selector-button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+}
+
+.home-container h2 {
+    margin-bottom: 20px;
+}
+
+.home-container button {
+    width: 100%;
+}
+
+
+.login-container {
+    width: 300px;
+}
+
+    .login-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .login-container h3 {
+        text-align: center;
+        margin: 5px;
+    }
+
+    .login-container input {
+        width: 93%;
+    }
+
+    .login-container button {
+        width: 100%;
+    }
+
+.container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.container-login {
+    position: relative;
+}
+
+.error-message {
+    color: rgb(231, 76, 60);
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.8em;
+}
+
+.info-message {
+    color: rgb(26, 188, 156);
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.8em;
+}
+
+.input-row-flex {
+    display: flex;
+    gap: 5px
+}

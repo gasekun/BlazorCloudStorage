@@ -1,0 +1,72 @@
+﻿@page "/users"
+@using BlazorCloudStorage.Context
+@using BlazorCloudStorage.Model
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+
+@attribute [Authorize(Roles = "Admin")]
+@rendermode InteractiveServer
+
+@inject CloudDbContext db;
+@inject UserManager<User> userManager;
+
+<PageTitle>Users</PageTitle>
+
+<AuthorizeView>
+    <div class="container container-login">
+        <a href="/">
+            <button style="position: absolute; left: 30px; top: 15px;">
+                <img src="images/Material-ArrowLeft.svg">
+            </button>
+        </a>
+
+        <h2>Users</h2>
+
+        <div class="input-row-flex">
+            <input type="text" placeholder="Username" @bind="userName"/>
+            <button style="width: 40px;" @onclick="AddUser">
+                <img src="images/Material-AccountPlusOutline.svg">
+            </button>
+        </div>
+        <hr/>
+        @foreach (var user in users)
+        {
+            <div class="user-item">
+                @user.Login
+                @if (user.Login != "root")
+                {
+                    <button class="btn-delete" style="width: 40px;" @onclick="() => DeleteUser(user)">
+                        <img src="images/Material-DeleteOutline.svg">
+                    </button>
+                }
+            </div>
+        }
+    </div>
+</AuthorizeView>
+
+@code {
+    private string userName = "";
+
+    private List<User> users = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = db.Users.ToList();
+    }
+
+    private async void AddUser()
+    {
+        var data = await userManager.CreateAsync(new User { UserName = userName, Login = userName, SaltPassword = "" });
+        users = db.Users.ToList();
+        userName = "";
+        StateHasChanged();
+    }
+
+    private async void DeleteUser(User user)
+    {
+        await userManager.DeleteAsync(user);
+        users = db.Users.ToList();
+        StateHasChanged();
+    }
+
+}

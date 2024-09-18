@@ -1,0 +1,231 @@
+﻿@page "/storage"
+@using System.Buffers
+@using System.Security.Claims
+@using BlazorCloudStorage.Context
+@using BlazorCloudStorage.Model
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.EntityFrameworkCore
+
+@attribute [Authorize]
+
+@rendermode InteractiveServer
+
+@inject CloudDbContext db
+@inject IJSRuntime JS
+@inject AuthenticationStateProvider provider
+
+<PageTitle>Storage</PageTitle>
+
+<div class="container manage-container">
+
+    <a href="/">
+        <button style="position: absolute; left: 30px; top: 15px;">
+            <img src="images/Material-ArrowLeft.svg">
+        </button>
+    </a>
+
+    <h2>Manager Files</h2>
+    @if (IsUpload)
+    {
+        <div>@Tools.ToReadableSize(progressBytes) / @Tools.ToReadableSize(progressSize)</div>
+        <progress value="@(progress.ToString("F2").Replace(",", "."))" max="100"
+                  style="width: 100%;">
+        </progress>
+    }
+
+    <InputFile style="@(!IsUpload ? "display:block" : "display:none")" OnChange="e => ChangeInput(e)" id="fileInput" multiple/>
+
+
+    <hr/>
+    <input type="text" placeholder="Search..." @oninput="Search"/>
+
+    <div class="files-list">
+        @foreach (var item in files)
+        {
+            <div class="file-item">
+                <span>
+                    <b>@item.Name</b>
+                </span>
+                <div class="file-item-body">
+                    <span>@(Tools.ToReadableSize(item.Size))</span>
+                    <span>@item.DateUpload.ToLocalTime()</span>
+                </div>
+
+                <div class="file-item-action">
+                    <a href="/download/@(item.Id)" class="btn" target="_blank">
+                        <button>
+                            <img src="images/Material-CloudDownloadOutline.svg">
+                        </button>
+                    </a>
+                    <button class="btn-delete" @onclick="() => DeleteFile(item.Id)">
+                        <img src="images/Material-DeleteOutline.svg">
+                    </button>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+
+<script>
+    function setInput(inputId, dataValue) {
+        setTimeout(function () {
+            var input = document.querySelector("#" + inputId);
+            if (input) {
+                input.value = dataValue;
+            }
+        }, 30);
+    }
+</script>
+
+@code {
+    private List<StorageFile> files = [];
+
+    private float progress = -1;
+    private bool IsUpload;
+    private long progressBytes;
+    private long progressSize;
+
+    private const long MAX_FILE_SIZE = 1000 * 1024 * 1024;
+
+    protected override void OnInitialized()
+    {
+        UpdateTable();
+    }
+
+    private async ValueTask ChangeInput(InputFileChangeEventArgs e)
+    {
+        var userId = await Tools.GetUserId(provider);
+
+        IsUpload = true;
+        StateHasChanged();
+
+        if (e.FileCount > 1)
+        {
+            var files = e.GetMultipleFiles(100);
+            foreach (var file in files)
+            {
+                await SaveFile(file, userId);
+            }
+        }
+        else
+        {
+            await SaveFile(e.File, userId);
+        }
+
+        IsUpload = false;
+        StateHasChanged();
+        await JS.InvokeVoidAsync("setInput", "fileInput", "");
+    }
+
+    private async Task SaveFile(IBrowserFile e, Guid userId)
+    {
+        var folder = $"{Environment.CurrentDirectory}\\uploads\\{userId}\\";
+
+        var path = folder + e.Name;
+
+        var num = 1;
+        while (File.Exists(path))
+        {
+            path = $"{folder}{Path.GetFileNameWithoutExtension(path)}_{num++}{Path.GetExtension(path)}";
+        }
+
+        if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+
+        var ms = new byte[e.Size];
+        var index = 0;
+
+        if (e.Size > MAX_FILE_SIZE)
+        {
+            await JS.InvokeVoidAsync("setInput", "fileInput", "");
+            return;
+        }
+
+        await using var timer = new Timer(_ => InvokeAsync(StateHasChanged));
+        timer.Change(TimeSpan.FromMilliseconds(500), TimeSpan.FromMilliseconds(500));
+
+        progress = progressBytes = 0;
+
+        var buffer = ArrayPool<byte>.Shared.Rent(4096);
+
+        await using var stream = e.OpenReadStream(MAX_FILE_SIZE);
+
+        progressSize = e.Size;
+
+        try
+        {
+            var read = await stream.ReadAsync(buffer);
+
+            while (read > 0)
+            {
+                progressBytes += read;
+
+                progress = (float)progressBytes / e.Size * 100f;
+
+                var readData = buffer.AsMemory().Slice(0, read).ToArray();
+
+                foreach (var t in readData)
+                {
+                    ms[index++] = t;
+                }
+
+                read = await stream.ReadAsync(buffer);
+            }
+
+
+            await File.WriteAllBytesAsync(path, ms);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(buffer, true);
+        }
+
+
+        db.Files.Add(new StorageFile
+        {
+            DateUpload = DateTime.Now,
+            Name = e.Name,
+            Owner = userId,
+            Path = path,
+            Size = e.Size
+        });
+
+        await db.SaveChangesAsync();
+
+        progress = -1;
+
+        await UpdateTable();
+    }
+
+    private async Task UpdateTable()
+    {
+        var userId = (await provider.GetAuthenticationStateAsync()).User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        files = await db.Files.Where(file => file.Owner == Guid.Parse(userId)).ToListAsync();
+        StateHasChanged();
+    }
+
+    private async Task DeleteFile(Guid itemId)
+    {
+        var file = db.Files.First(item => item.Id == itemId);
+
+        File.Delete(file.Path);
+        db.Files.Remove(file);
+
+        await db.SaveChangesAsync();
+        await UpdateTable();
+    }
+
+    private async Task Search(ChangeEventArgs args)
+    {
+        var userId = (await provider.GetAuthenticationStateAsync()).User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        files = await db.Files.Where(file => file.Owner == Guid.Parse(userId) && file.Name.Contains(args.Value.ToString())).ToListAsync();
+        StateHasChanged();
+    }
+
+}
