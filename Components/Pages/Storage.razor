@@ -122,14 +122,14 @@
 
     private async Task SaveFile(IBrowserFile e, Guid userId)
     {
-        var folder = $"{Environment.CurrentDirectory}\\uploads\\{userId}\\";
+        var folder = $"{Environment.CurrentDirectory}/uploads/{userId}/";
 
-        var path = folder + e.Name;
+        var file = e.Name;
 
         var num = 1;
-        while (File.Exists(path))
+        while (File.Exists(folder + file))
         {
-            path = $"{folder}{Path.GetFileNameWithoutExtension(path)}_{num++}{Path.GetExtension(path)}";
+            file = $"{Path.GetFileNameWithoutExtension(file)}_{num++}{Path.GetExtension(file)}";
         }
 
         if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
@@ -175,7 +175,7 @@
             }
 
 
-            await File.WriteAllBytesAsync(path, ms);
+            await File.WriteAllBytesAsync(folder + file, ms);
         }
         catch (Exception ex)
         {
@@ -192,7 +192,7 @@
             DateUpload = DateTime.Now,
             Name = e.Name,
             Owner = userId,
-            Path = path,
+            Path = folder + file,
             Size = e.Size
         });
 
